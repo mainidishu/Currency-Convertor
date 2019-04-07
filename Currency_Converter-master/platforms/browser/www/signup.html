@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+function validateForm() {
+    var x = document.forms["myForm"]["Email"].value;
+    var y = document.forms["myForm"]["password"].value;
+    var z = document.forms["myForm"]["confirm"].value;
+    var b = document.forms["myForm"]["UserName"].value;
+    if (x == "") {
+        alert("Email must be filled out");
+        return false;
+    }
+    if (y == "") {
+    	  alert("Password must be filled out");
+    	  return false;
+	 }
+    if (z == "") {
+        alert("Confirm password must be filled out");
+        return false;
+    }
+    if (y != z) {
+        alert("Password and Confirm password must be same");
+        return false;
+    }
+    if (b == "") {
+    	  alert("UserName must be filled out");
+    	  return false;
+	 }
+	else{
+		return true;
+	}
+}
+function valid() {
+	var t=validateForm();
+	if (t ==true){
+		window.open('menu.html',"_self");
+	}
+}
+</script>
+
+<meta name = "viewport" content = "width = device-width, initial-scale = 1">
+<link rel = "stylesheet" href = "https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+<script src = "https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src = "https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+<script>
+	$(document).on("pagecreate","#page1",function(){
+		$("#logo1").on("tap",function(){
+		});
+		$("#logo2").on("tap",function(){
+		});
+	});
+</script>
+
+</head>
+
+<body>
+	<div data-role = "page" data-theme = "b" class="ui-page ui-page-theme-b ui-page-active" >
+		<div data-role = "main" class = "ui-content" >
+			<form name="myForm" method="post">
+				<div class = "ui-field-contain" >
+					<input type="email" name="Email" id="form" placeholder="Email" data-theme="a" ><br>
+					<input type="password" name="password" id="form" placeholder="Password" data-theme="a" ><br>
+					<input type="password" name="confirm" id="form" placeholder="Confirm Password" data-theme="a" ><br>
+					<input type="text" name="UserName" id="form" placeholder="UserName" data-theme="a" >
+				</div>
+			</form>
+			<br><br>
+			<a id="logo1" ><img src="img/fblogo.png" height="30" width="30"></a>
+			<br><br>
+			<a id="logo2" ><img src="img/Glogo.png" height="30" width="30"></a>
+			<br><br>
+			<a  data-role="button" style="background: #13BC01 ; color: white" id="d"  onclick="valid();return false" >SIGNUP</a><br><br>
+		</div>
+	</div>
+</body>
+</html>

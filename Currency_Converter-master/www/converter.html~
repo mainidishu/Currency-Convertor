@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta name = "viewport" content = "width = device-width, initial-scale = 1">
+<link rel = "stylesheet" href = "https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+<script src = "https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src = "https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+<script>
+/*
+$(document).ready(function(){
+
+
+
+// set endpoint and your API key
+endpoint = 'convert';
+access_key = 'e403aa4544f1d11c4d527c5ab92181dc';
+
+// define from currency, to currency, and amount
+from = 'EUR';
+to = 'GBP';
+amount = '10';
+
+	// execute the conversion using the "convert" endpoint:
+	$.ajax({
+		url: 'http://data.fixer.io/api/' + endpoint + '?access_key=' + access_key +'&from=' + from + '&to=' + to + '&amount=' + amount,   
+		dataType: 'jsonp',
+		success: function(json) {
+
+			// access the conversion result in json.result
+			alert(json.result);
+					
+		}
+	});
+	
+	// set endpoint and your access key
+	endpoint = 'latest'
+	access_key = 'e403aa4544f1d11c4d527c5ab92181dc';
+
+	// get the most recent exchange rates via the "latest" endpoint:
+	$.ajax({
+		url: 'http://data.fixer.io/api/' + endpoint + '?access_key=' + access_key,   
+		dataType: 'jsonp',
+		success: function(json) {
+
+			// exchange rata data is stored in json.rates
+			alert(json.rates.GBP);
+			
+			// base currency is stored in json.base
+			alert(json.base);
+			
+			// timestamp can be accessed in json.timestamp
+			alert(json.date);
+			
+		}
+	});
+});
+*/
+
+function validateForm() {
+    var x = document.forms["myForm"]["Input_amount"].value;
+	var e = document.forms["myForm"]["currencies1"].value;
+	var f = document.forms["myForm"]["currencies2"].value;
+    if (x == "") {
+        alert("Input_Amount must be filled out");
+        return false;
+    }
+    if(e == 0){
+	 	  alert("Please select the 1st currency");
+	 	  return false;
+	 }
+    if(f == 0){
+	 	  alert("Please select the 2nd currency");
+	 	  return false;
+	 }
+	else{
+		return true;
+	}
+}
+function valid() {
+	var t=validateForm();
+	if (t == true){
+		/*
+		$.ajax({
+		  method: "POST",
+		  url: "http://data.fixer.io/api/latest?access_key=e403aa4544f1d11c4d527c5ab92181dc&base=USD&symbols=GBP,JPY,EUR,INR",
+		  data: { name: "John", location: "Boston" }
+		})
+		  .done(function( data ) {
+			alert( "Data Saved: " + data );
+				OC1 = data.rates.c1;
+				OC2 = data.rates.c2;
+				var OA = OC2/OC1;
+				$('#oa').val(OA);
+		  });
+		
+		
+		$.ajax({
+			type: 'GET',
+			url: 'http://data.fixer.io/api/latest?access_key=e403aa4544f1d11c4d527c5ab92181dc',
+			dataType: 'json',
+			success: function(data){
+				OC1 = data.rates.c1;
+				OC2 = data.rates.c2;
+				var OA = OC2/OC1;
+				$('#oa').val(OA);
+			}
+		});
+		
+		*/
+		
+		endpoint = 'latest'
+		access_key = 'e403aa4544f1d11c4d527c5ab92181dc';
+		symbol = $('#cur2').val();
+		amount = $('#ia').val();
+
+	// get the most recent exchange rates via the "latest" endpoint:
+	$.ajax({
+		url: 'http://data.fixer.io/api/' + endpoint + '?access_key=' + access_key + '&symbols=' + symbol + '&amount=' + amount,
+		dataType: 'jsonp',
+		success: function(json) {
+
+			// exchange rata data is stored in json.rates
+			//alert(json.rates.GBP);
+			
+			// base currency is stored in json.base
+			//alert(json.base);
+			
+			// timestamp can be accessed in json.timestamp
+			//alert(json.date);
+			//$.each(json, function(data, obj) {
+			  //use obj.id and obj.name here, for example:
+			  // if(data == 'rates'){
+				switch(symbol){
+					case 'INR':
+					output = json.rates.INR;
+					break;
+					case 'USD':
+					output = json.rates.USD;
+					break;
+					case 'EUR':
+					output = json.rates.EUR;
+					break;
+					case 'JPY':
+					output = json.rates.JPY;
+					break;
+				}
+				
+			 //  }
+			  
+			//});
+			
+			$('#oa').val(output);
+			
+		}
+	});
+		
+	}
+}
+
+
+</script>
+</head>
+<body>
+	<div data-role = "page" data-theme = "b" class="ui-page ui-page-theme-b ui-page-active" >
+		<div data-role = "main" class = "ui-content" >
+			<form name="myForm" method="post">
+				<div class = "ui-field-contain" >
+					<input id = "ia" type="text" value="1" name="Input_amount" class="c" placeholder="Input_Amount" data-theme="a" ><br>
+					<input list="currency1" value="EUR" name="currencies1" class="c" placeholder="Currency 1" data-theme="a" ><br>
+					<datalist id="currency1">
+						<option value="EUR">
+						<!--option value="USD">
+						<option value="INR">
+						<option value="JPY"-->
+					</datalist>
+					<input list="currency2" id="cur2" name="currencies2" class="c" placeholder="Cuurency 2" data-theme="a" ><br>
+					<datalist id="currency2">
+						<option value="INR">
+						<option value="USD">
+						<option value="EUR">
+						<option value="JPY">
+					</datalist>
+					<input id = "oa" type="text" name="Output_amount" class="c" placeholder="Output" data-theme="b" ><br>
+				</div>
+			</form>
+			<br>
+			<a  data-role="button" style="background: #13BC01 ; color: white" onclick="valid();return false" >SUBMIT</a><br><br>
+		</div>
+	</div>
+
+</body>
+</html>
