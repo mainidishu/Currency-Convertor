@@ -15,7 +15,7 @@ $(document).ready(function(){
 
 // set endpoint and your API key
 endpoint = 'convert';
-access_key = '[-]';
+access_key = '[-access-key-]';
 
 // define from currency, to currency, and amount
 from = 'EUR';
@@ -36,7 +36,7 @@ amount = '10';
 	
 	// set endpoint and your access key
 	endpoint = 'latest'
-	access_key = '[-]';
+	access_key = '[-access-key-]';
 
 	// get the most recent exchange rates via the "latest" endpoint:
 	$.ajax({
@@ -84,7 +84,7 @@ function valid() {
 		/*
 		$.ajax({
 		  method: "POST",
-		  url: "http://data.fixer.io/api/latest?access_key=[-]&base=USD&symbols=GBP,JPY,EUR,INR",
+		  url: "http://data.fixer.io/api/latest?access_key=[-access-key-]&base=USD&symbols=GBP,JPY,EUR,INR",
 		  data: { name: "John", location: "Boston" }
 		})
 		  .done(function( data ) {
@@ -98,7 +98,7 @@ function valid() {
 		
 		$.ajax({
 			type: 'GET',
-			url: 'http://data.fixer.io/api/latest?access_key=[-]',
+			url: 'http://data.fixer.io/api/latest?access_key=[-access-key-]',
 			dataType: 'json',
 			success: function(data){
 				OC1 = data.rates.c1;
@@ -111,7 +111,7 @@ function valid() {
 		*/
 		
 		endpoint = 'latest'
-		access_key = '[-]';
+		access_key = '[-access-key-]';
 		symbol = $('#cur2').val();
 		amount = $('#ia').val();
 

@@ -41,7 +41,7 @@ function valid() {
 	var t=validateForm();
 	if (t == true){
 	endpoint = 'historical'
-	access_key = '[-]';
+	access_key = '[-access-key-]';
 	symbol = $('#cur2').val();
 	amount = $('#ia').val();
 	DATE = $('#date1').val();
